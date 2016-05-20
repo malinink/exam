@@ -1,5 +1,8 @@
 <?php
-
+/**
+ *
+ * @author laravel
+ */
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 

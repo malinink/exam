@@ -1,5 +1,8 @@
 <?php
-
+/**
+ *
+ * @author malinink
+ */
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
