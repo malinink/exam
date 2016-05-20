@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<ruleset name="Laravel">
+    <!-- check all files -->
+    <file>.</file>
+    <!-- exclude patterns -->
+    <exclude-pattern>vendor</exclude-pattern>
+    <exclude-pattern>_ide_helper*.php</exclude-pattern>
+    <exclude-pattern>bootstrap/cache</exclude-pattern>
+    <exclude-pattern>storage</exclude-pattern>
+        
+    <!-- default parameters -->
+    <arg name="report" value="summary"/>
+    <arg name="standard" value="PSR2"/>
+    <arg name="extensions" value="php,js,css"/>
+    <arg name="report" value="full"/>
+
+    <!-- rules and them excludes -->
+    <rule ref="PSR2"/>
+    <!--    
+    <rule ref="Squiz.Commenting.FunctionComment" />
+    <rule ref="Squiz.Commenting.FunctionCommentThrowTag" />
+    <rule ref="Squiz.Commenting.FileComment" />
+    <rule ref="Squiz.Commenting.VariableComment" />
+    -->
+    
+    <!-- tests and migrations does not have namespaces -->
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>tests</exclude-pattern>
+        <exclude-pattern>database</exclude-pattern>
+    </rule>
+    
+    
+    <!-- blades have no php code -->
+    <rule ref="Internal.NoCodeFound">
+        <exclude-pattern>*.blade.php</exclude-pattern>
+    </rule>
+    <!-- too many void strings in that file -->
+    <rule ref="PSR1.Files.SideEffects">
+        <exclude-pattern>bootstrap/autoload.php</exclude-pattern>
+    </rule>
+</ruleset>

@@ -1,0 +1,19 @@
+language: php
+php:
+  - 5.6
+services:
+  - mysql
+install:
+ - phpenv config-add travis.php.config.ini
+ - cp .env.travis .env
+ - mysql -e 'create database if not exists test;'
+ - composer self-update
+ - composer install  --no-interaction
+ - chmod -R 777 storage
+ - php artisan migrate:install --database=mysql_testing --no-interaction -vvv
+script:
+ - ./vendor/bin/phpcs
+ - php artisan migrate --database=mysql_testing --no-interaction -vvv
+ - php artisan db:seed --database=mysql_testing --no-interaction -vvv
+ - ./vendor/bin/phpunit
+ - php artisan migrate:rollback --database=mysql_testing --no-interaction -vvv
