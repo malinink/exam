@@ -10,10 +10,10 @@ install:
  - composer self-update
  - composer install  --no-interaction
  - chmod -R 777 storage
- - php artisan migrate:install --database=mysql_testing --no-interaction -vvv
+ - php artisan migrate:install --no-interaction -vvv
 script:
  - ./vendor/bin/phpcs
- - php artisan migrate --database=mysql_testing --no-interaction -vvv
- - php artisan db:seed --database=mysql_testing --no-interaction -vvv
+ - php artisan migrate --no-interaction -vvv
+ - php artisan db:seed --no-interaction -vvv
  - ./vendor/bin/phpunit
- - php artisan migrate:rollback --database=mysql_testing --no-interaction -vvv
+ - php artisan migrate:rollback --no-interaction -vvv
