@@ -45,4 +45,3 @@ class UserController extends Controller
         return redirect()->route('user')->with('message', 'not logged in!');
     }
 }
-
