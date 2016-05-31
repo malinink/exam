@@ -34,7 +34,10 @@ class UserController extends Controller
         });
 
         if ($validator->fails() == false) {
-            App\User::create(['name' => $username, 'email' => $useremail, 'group' => $usergroup, 'course' => $usercourse]);
+            App\User::create(['name' => $username,
+                'email' => $useremail,
+                'group' => $usergroup,
+                'course' => $usercourse]);
         }
 
         return redirect('/listUsers')
@@ -68,7 +71,11 @@ class UserController extends Controller
         $usergroup = $request->input('usergroup');
         $usercourse = $request->input('usercourse');
 
-        if ((($username === null) || ($useremail === null) || ($usergroup === null) || ($usercourse === null)) == false) {
+        if ((
+                ($username === null) ||
+                ($useremail === null) ||
+                ($usergroup === null) ||
+                ($usercourse === null)) == false) {
             $validator = Validator::make($request->all(), [
                         //      'username' => 'required|regex:/[а-я]/',
                         'usercourse' => 'regex:/[1-4]/|required_with_all:usergroup',
@@ -104,7 +111,10 @@ class UserController extends Controller
         $usergroup = $request->input('new_usergroup');
         $usercourse = $request->input('new_usercourse');
 
-        if ((($username === null) || ($useremail === null) || ($usergroup === null) || ($usercourse === null)) == false) {
+        if ((($username === null) ||
+                ($useremail === null) ||
+                ($usergroup === null) ||
+                ($usercourse === null)) == false) {
             $validator = Validator::make($request->all(), [
                         //      'username' => 'required|regex:/[а-я]/',
                         'usercourse' => 'regex:/[1-4]/|required_with_all:usergroup',
