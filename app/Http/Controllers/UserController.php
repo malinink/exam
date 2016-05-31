@@ -14,7 +14,7 @@ class UserController extends Controller {
         $useremail = $request->input('useremail');
         $usergroup = $request->input('usergroup');
         $usercourse = $request->input('usercourse');
-        
+
         $validator = Validator::make($request->all(), [
                     'username' => 'required', //|regex:/[а-я]/',
                     'usercourse' => 'required|regex:/[1-4]/|required_with_all:usergroup',
@@ -34,7 +34,7 @@ class UserController extends Controller {
         if ($validator->fails() == false) {
             App\User::create(['name' => $username, 'email' => $useremail, 'group' => $usergroup, 'course' => $usercourse]);
         }
-        
+
         return redirect('/listUsers')
                         ->withErrors($validator)
                         ->withInput();
