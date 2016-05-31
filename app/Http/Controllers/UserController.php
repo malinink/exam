@@ -91,7 +91,7 @@ class UserController extends Controller
                 $user->delete();
                 \Session::flash('flash_message', 'deleted');
             } else {
-                \Session::flash('flash_message', 'cant delete urself');  
+                \Session::flash('flash_message', 'cant delete urself'); 
             }
         } else {
             \Session::flash('flash_message', 'notdeleted');
