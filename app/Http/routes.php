@@ -18,3 +18,15 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/user', [
+    'as' => 'user', 'uses' => 'UserController@index'
+    ]);
+
+Route::get('/user/{id}/deactivate', [
+    'as' => 'user.deactivate', 'uses' => 'UserController@deactivate'
+    ]);
+
+Route::get('/user/{id}/activate', [
+    'as' => 'user.activate', 'uses' => 'UserController@activate'
+    ]);
