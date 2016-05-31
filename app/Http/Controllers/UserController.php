@@ -86,18 +86,14 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        if (Auth::user()){
-            if (Auth::user()->id != $id){
+        if (Auth::user()) {
+            if (Auth::user()->id != $id) {
                 $user->delete();
                 \Session::flash('flash_message', 'deleted');
+            } else {
+                \Session::flash('flash_message', 'cant delete urself');  
             }
-            else
-            {
-              \Session::flash('flash_message', 'cant delete urself');  
-            }
-        }
-        else
-        {
+        } else {
             \Session::flash('flash_message', 'notdeleted');
         }
         return redirect('user');
