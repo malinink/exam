@@ -6,9 +6,11 @@ use Illuminate\Http\Request;
 use App;
 use Validator;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
-    public function addUser(Request $request) {
+    public function addUser(Request $request)
+    {
 
         $username = $request->input('username');
         $useremail = $request->input('useremail');
@@ -22,7 +24,7 @@ class UserController extends Controller {
                     'useremail' => 'required'
         ]);
 
-        $validator->after(function($validator) use ($username, $usercourse, $usergroup) {
+        $validator->after(function ($validator) use ($username, $usercourse, $usergroup) {
             if ((ucfirst(strtolower(strval($username))) == strval($username)) == false) {
                 $validator->errors()->add('field', 'Неправильное имя');
             }
@@ -40,7 +42,8 @@ class UserController extends Controller {
                         ->withInput();
     }
 
-    public function listUsers() {
+    public function listUsers()
+    {
         $users_count = App\User::all()->count();
         //Создание массива, содержащего все имена студентов
         $array_users = App\User::all()->pluck('name')->toArray();
@@ -57,7 +60,8 @@ class UserController extends Controller {
         ]);
     }
 
-    public function removeUser(Request $request) {
+    public function removeUser(Request $request)
+    {
 
         $username = $request->input('username');
         $useremail = $request->input('useremail');
@@ -65,8 +69,6 @@ class UserController extends Controller {
         $usercourse = $request->input('usercourse');
 
         if ((($username === null) || ($useremail === null) || ($usergroup === null) || ($usercourse === null)) == false) {
-
-
             $validator = Validator::make($request->all(), [
                         //      'username' => 'required|regex:/[а-я]/',
                         'usercourse' => 'regex:/[1-4]/|required_with_all:usergroup',
@@ -74,7 +76,7 @@ class UserController extends Controller {
                         'useremail' => 'required'
             ]);
 
-            $validator->after(function($validator) use ($username, $usercourse, $usergroup) {
+            $validator->after(function ($validator) use ($username, $usercourse, $usergroup) {
                 if ((ucfirst(strtolower(strval($username))) == strval($username)) == false) {
                     $validator->errors()->add('field', 'Неправильное имя');
                 }
@@ -94,7 +96,8 @@ class UserController extends Controller {
         }
     }
 
-    public function editUser(Request $request) {
+    public function editUser(Request $request)
+    {
 
         $username = $request->input('new_username');
         $useremail = $request->input('useremail');
@@ -102,8 +105,6 @@ class UserController extends Controller {
         $usercourse = $request->input('new_usercourse');
 
         if ((($username === null) || ($useremail === null) || ($usergroup === null) || ($usercourse === null)) == false) {
-
-
             $validator = Validator::make($request->all(), [
                         //      'username' => 'required|regex:/[а-я]/',
                         'usercourse' => 'regex:/[1-4]/|required_with_all:usergroup',
@@ -111,7 +112,7 @@ class UserController extends Controller {
                         'useremail' => 'required'
             ]);
 
-            $validator->after(function($validator) use ($username, $usercourse, $usergroup) {
+            $validator->after(function ($validator) use ($username, $usercourse, $usergroup) {
                 if ((ucfirst(strtolower(strval($username))) == strval($username)) == false) {
                     $validator->errors()->add('field', 'Неправильное имя');
                 }
@@ -138,5 +139,4 @@ class UserController extends Controller {
                             ->withInput();
         }
     }
-
 }
