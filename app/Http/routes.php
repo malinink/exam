@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['middleware' => 'auth'], function()
+{
+Route::resource('user', 'UserController');
+});
+
+
+Route::get('user/{id}/confirm',
+        ['as' => 'confirm', 'uses' => 'UserController@confirm']);

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app'  )
 
 @section('content')
 <div class="container">
@@ -14,4 +14,6 @@
         </div>
     </div>
 </div>
+{!! link_to_action('UserController@index', 'UserList', [], 
+            ['class' => 'btn btn-success']) !!}
 @endsection
